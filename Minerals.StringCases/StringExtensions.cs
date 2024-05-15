@@ -125,6 +125,33 @@ namespace Minerals.StringCases
             return new(newString);
         }
 
+        public static string ToMacroCase(this string value)
+        {
+            int newIndex = 0;
+            bool separator = true;
+            bool firstCharacter = true;
+            UnicodeCategory current;
+            char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
+            for (int i = 0; i < value.Length; i++)
+            {
+                current = char.GetUnicodeCategory(value[i]);
+                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
+                if (IsSpecialCharacter(current) is false)
+                {
+                    if (separator && firstCharacter is false)
+                    {
+                        newString[newIndex] = '_';
+                        newIndex++;
+                    }
+                    newString[newIndex] = char.ToUpperInvariant(value[i]);
+                    firstCharacter = false;
+                    separator = false;
+                    newIndex++;
+                }
+            }
+            return new(newString);
+        }
+
         public static string ToTrainCase(this string value)
         {
             int newIndex = 0;

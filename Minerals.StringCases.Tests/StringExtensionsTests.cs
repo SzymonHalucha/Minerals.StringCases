@@ -8,6 +8,7 @@ namespace Minerals.StringCases.Tests
         private const string UnderscoreCamelCase = "_exampleVariableName321";
         private const string KebabCase = "example-variable-name-321";
         private const string SnakeCase = "example_variable_name_321";
+        private const string MacroCase = "EXAMPLE_VARIABLE_NAME_321";
         private const string TrainCase = "Example-Variable-Name-321";
         private const string TitleCase = "Example Variable Name 321";
         private const string SampleText = "  _ example Variable - - Name   321";
@@ -40,6 +41,12 @@ namespace Minerals.StringCases.Tests
         public void SnakeCase_FromSampleText()
         {
             Minerals.StringCases.StringExtensions.ToSnakeCase(SampleText).Should().Be(SnakeCase);
+        }
+
+        [TestMethod]
+        public void MacroCase_FromSampleText()
+        {
+            Minerals.StringCases.StringExtensions.ToMacroCase(SampleText).Should().Be(MacroCase);
         }
 
         [TestMethod]

@@ -35,6 +35,12 @@ namespace Minerals.StringCases.Benchmarks
         }
 
         [Benchmark]
+        public void MacroCase_FromSampleText()
+        {
+            string text = Minerals.StringCases.StringExtensions.ToMacroCase(SampleText);
+        }
+
+        [Benchmark]
         public void TrainCase_FromSampleText()
         {
             string text = Minerals.StringCases.StringExtensions.ToTrainCase(SampleText);
