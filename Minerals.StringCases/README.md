@@ -59,7 +59,7 @@ string titleCase = sampleText.ToTitleCase();
 
 ## Performance and comparison
 
-Here is a comparison of the speed and amount of memory allocation with the most popular NuGet package similar to Minerals.StringCases - [CaseExtesions](https://www.nuget.org/packages/CaseExtensions/) version 1.1.0.
+Here is a comparison of the speed and amount of memory allocation with the most popular NuGet package similar to [Minerals.StringCases](https://www.nuget.org/packages/Minerals.StringCases/) version 0.1.0 - [CaseExtesions](https://www.nuget.org/packages/CaseExtensions/) version 1.1.0.
 
 String used to perform the comparison:
 
