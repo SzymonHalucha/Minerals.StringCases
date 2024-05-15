@@ -222,8 +222,8 @@ namespace Minerals.StringCases
                 current = char.GetUnicodeCategory(text[i]);
                 skips += IsSpecialCharacter(current) ? 1 : 0;
                 divs += (current == UnicodeCategory.UppercaseLetter && previous != UnicodeCategory.UppercaseLetter)
-                || (current == UnicodeCategory.DecimalDigitNumber && previous != UnicodeCategory.DecimalDigitNumber)
-                || (current == UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.UppercaseLetter) ? 1 : 0;
+                    || (current == UnicodeCategory.DecimalDigitNumber && previous != UnicodeCategory.DecimalDigitNumber)
+                    || (current == UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.UppercaseLetter) ? 1 : 0;
                 previous = current;
             }
             return divs - skips;
