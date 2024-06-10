@@ -5,17 +5,21 @@ namespace Minerals.StringCases
         public static string ToPascalCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForPascalOrCamelCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    newString[newIndex] = separator ? char.ToUpperInvariant(value[i]) : char.ToLowerInvariant(value[i]);
-                    separator = false;
+                    newString[newIndex] = insertSeparator
+                        ? char.ToUpperInvariant(value[i])
+                        : char.ToLowerInvariant(value[i]);
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -25,21 +29,23 @@ namespace Minerals.StringCases
         public static string ToCamelCase(this string value)
         {
             int newIndex = 0;
-            bool separator = false;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = false;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForPascalOrCamelCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    newString[newIndex] = separator && firstCharacter is false
+                    newString[newIndex] = insertSeparator && !isFirstCharacter
                         ? char.ToUpperInvariant(value[i])
                         : char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -49,22 +55,24 @@ namespace Minerals.StringCases
         public static string ToUnderscoreCamelCase(this string value)
         {
             int newIndex = 1;
-            bool separator = false;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = false;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForPascalOrCamelCase(value) + 1];
             newString[0] = '_';
             for (int i = 1; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    newString[newIndex] = separator && firstCharacter is false
+                    newString[newIndex] = insertSeparator && !isFirstCharacter
                         ? char.ToUpperInvariant(value[i])
                         : char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -74,24 +82,26 @@ namespace Minerals.StringCases
         public static string ToKebabCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    if (separator && firstCharacter is false)
+                    if (insertSeparator && !isFirstCharacter)
                     {
                         newString[newIndex] = '-';
                         newIndex++;
                     }
                     newString[newIndex] = char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -101,24 +111,26 @@ namespace Minerals.StringCases
         public static string ToSnakeCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    if (separator && firstCharacter is false)
+                    if (insertSeparator && !isFirstCharacter)
                     {
                         newString[newIndex] = '_';
                         newIndex++;
                     }
                     newString[newIndex] = char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -128,24 +140,26 @@ namespace Minerals.StringCases
         public static string ToMacroCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    if (separator && firstCharacter is false)
+                    if (insertSeparator && !isFirstCharacter)
                     {
                         newString[newIndex] = '_';
                         newIndex++;
                     }
                     newString[newIndex] = char.ToUpperInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -155,26 +169,28 @@ namespace Minerals.StringCases
         public static string ToTrainCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    if (separator && firstCharacter is false)
+                    if (insertSeparator && !isFirstCharacter)
                     {
                         newString[newIndex] = '-';
                         newIndex++;
                     }
-                    newString[newIndex] = separator
+                    newString[newIndex] = insertSeparator
                         ? char.ToUpperInvariant(value[i])
                         : char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -184,26 +200,28 @@ namespace Minerals.StringCases
         public static string ToTitleCase(this string value)
         {
             int newIndex = 0;
-            bool separator = true;
-            bool firstCharacter = true;
-            UnicodeCategory current;
+            bool insertSeparator = true;
+            bool isFirstCharacter = true;
+            UnicodeCategory previous;
+            UnicodeCategory current = UnicodeCategory.OtherSymbol;
             char[] newString = new char[value.Length + CalculateSpanSizeForKebabOrSnakeCase(value)];
             for (int i = 0; i < value.Length; i++)
             {
+                previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                separator = (current != UnicodeCategory.LowercaseLetter && current != UnicodeCategory.DecimalDigitNumber) || separator;
-                if (IsSpecialCharacter(current) is false)
+                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                if (!IsSpecialCharacter(current))
                 {
-                    if (separator && firstCharacter is false)
+                    if (insertSeparator && !isFirstCharacter)
                     {
                         newString[newIndex] = ' ';
                         newIndex++;
                     }
-                    newString[newIndex] = separator
+                    newString[newIndex] = insertSeparator
                         ? char.ToUpperInvariant(value[i])
                         : char.ToLowerInvariant(value[i]);
-                    firstCharacter = false;
-                    separator = false;
+                    isFirstCharacter = false;
+                    insertSeparator = false;
                     newIndex++;
                 }
             }
@@ -215,15 +233,13 @@ namespace Minerals.StringCases
         {
             UnicodeCategory previous = char.GetUnicodeCategory(text[0]);
             UnicodeCategory current;
-            int divs = IsSpecialCharacter(previous) ? -1 : 0;
             int skips = IsSpecialCharacter(previous) ? 1 : 0;
-            for (int i = 1; i < text.Length - 2; i++)
+            int divs = 0;
+            for (int i = 1; i < text.Length - 1; i++)
             {
                 current = char.GetUnicodeCategory(text[i]);
                 skips += IsSpecialCharacter(current) ? 1 : 0;
-                divs += (current == UnicodeCategory.UppercaseLetter && previous != UnicodeCategory.UppercaseLetter)
-                    || (current == UnicodeCategory.DecimalDigitNumber && previous != UnicodeCategory.DecimalDigitNumber)
-                    || (current == UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.LowercaseLetter && previous != UnicodeCategory.UppercaseLetter) ? 1 : 0;
+                divs += !previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber)) ? 1 : 0;
                 previous = current;
             }
             return divs - skips;
@@ -245,9 +261,9 @@ namespace Minerals.StringCases
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static bool IsSpecialCharacter(UnicodeCategory category)
         {
-            return category != UnicodeCategory.UppercaseLetter
-                && category != UnicodeCategory.LowercaseLetter
-                && category != UnicodeCategory.DecimalDigitNumber;
+            return category is not UnicodeCategory.UppercaseLetter
+                and not UnicodeCategory.LowercaseLetter
+                and not UnicodeCategory.DecimalDigitNumber;
         }
     }
 }

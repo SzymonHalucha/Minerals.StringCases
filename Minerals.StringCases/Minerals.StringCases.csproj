@@ -10,7 +10,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <Version>0.1.0</Version>
+        <Version>0.2.0</Version>
         <Title>StringCases</Title>
         <Authors>Szymon Hałucha</Authors>
         <Product>StringCases</Product>
@@ -24,7 +24,7 @@
         <PackageProjectUrl>https://github.com/SzymonHalucha/Minerals.StringCases</PackageProjectUrl>
         <PackageTags>string, extension, transformation, pascal, camel, kebab, snake, macro, train, title, case</PackageTags>
         <PackageReadmeFile>README.md</PackageReadmeFile>
-        <PackageReleaseNotes>First release</PackageReleaseNotes>
+        <PackageReleaseNotes>Fixed bug with uppercase letters</PackageReleaseNotes>
         <IsPackable>true</IsPackable>
     </PropertyGroup>
 
