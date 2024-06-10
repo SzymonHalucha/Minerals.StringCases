@@ -235,7 +235,7 @@ namespace Minerals.StringCases
             UnicodeCategory current;
             int skips = IsSpecialCharacter(previous) ? 1 : 0;
             int divs = 0;
-            for (int i = 1; i < text.Length - 1; i++)
+            for (int i = 1; i < text.Length; i++)
             {
                 current = char.GetUnicodeCategory(text[i]);
                 skips += IsSpecialCharacter(current) ? 1 : 0;

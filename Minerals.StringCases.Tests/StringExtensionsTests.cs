@@ -3,15 +3,15 @@ namespace Minerals.StringCases.Tests
     [TestClass]
     public class StringExtensionsTests
     {
-        private const string PascalCase1 = "ExampleVariableName321";
-        private const string CamelCase1 = "exampleVariableName321";
-        private const string UnderscoreCamelCase1 = "_exampleVariableName321";
-        private const string KebabCase1 = "example-variable-name-321";
-        private const string SnakeCase1 = "example_variable_name_321";
-        private const string MacroCase1 = "EXAMPLE_VARIABLE_NAME_321";
-        private const string TrainCase1 = "Example-Variable-Name-321";
-        private const string TitleCase1 = "Example Variable Name 321";
-        private const string SampleText1 = "  _ example Variable - - Name   321";
+        private const string PascalCase1 = "ExampleVariableName321TestA";
+        private const string CamelCase1 = "exampleVariableName321TestA";
+        private const string UnderscoreCamelCase1 = "_exampleVariableName321TestA";
+        private const string KebabCase1 = "example-variable-name-321-test-a";
+        private const string SnakeCase1 = "example_variable_name_321_test_a";
+        private const string MacroCase1 = "EXAMPLE_VARIABLE_NAME_321_TEST_A";
+        private const string TrainCase1 = "Example-Variable-Name-321-Test-A";
+        private const string TitleCase1 = "Example Variable Name 321 Test A";
+        private const string SampleText1 = "  _ example Variable - - Name   321 TestA";
 
         [TestMethod]
         public void PascalCase_FromSampleText1()
