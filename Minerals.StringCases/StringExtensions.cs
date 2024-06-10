@@ -13,7 +13,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     newString[newIndex] = insertSeparator
@@ -38,7 +38,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     newString[newIndex] = insertSeparator && !isFirstCharacter
@@ -65,7 +65,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     newString[newIndex] = insertSeparator && !isFirstCharacter
@@ -91,7 +91,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     if (insertSeparator && !isFirstCharacter)
@@ -120,7 +120,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     if (insertSeparator && !isFirstCharacter)
@@ -149,7 +149,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     if (insertSeparator && !isFirstCharacter)
@@ -178,7 +178,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     if (insertSeparator && !isFirstCharacter)
@@ -209,7 +209,7 @@ namespace Minerals.StringCases
             {
                 previous = current;
                 current = char.GetUnicodeCategory(value[i]);
-                insertSeparator = (!previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber))) || insertSeparator;
+                insertSeparator = (previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber)) || insertSeparator;
                 if (!IsSpecialCharacter(current))
                 {
                     if (insertSeparator && !isFirstCharacter)
@@ -239,7 +239,7 @@ namespace Minerals.StringCases
             {
                 current = char.GetUnicodeCategory(text[i]);
                 skips += IsSpecialCharacter(current) ? 1 : 0;
-                divs += !previous.Equals(current) && (current.Equals(UnicodeCategory.UppercaseLetter) || current.Equals(UnicodeCategory.DecimalDigitNumber)) ? 1 : 0;
+                divs += previous != current && (current is UnicodeCategory.UppercaseLetter || current is UnicodeCategory.DecimalDigitNumber) ? 1 : 0;
                 previous = current;
             }
             return divs - skips;
