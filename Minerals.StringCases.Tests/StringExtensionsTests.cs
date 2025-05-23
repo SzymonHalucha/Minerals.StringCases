@@ -1,3 +1,6 @@
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using FluentAssertions;
+
 namespace Minerals.StringCases.Tests
 {
     [TestClass]

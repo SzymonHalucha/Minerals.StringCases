@@ -22,7 +22,7 @@ Add the Minerals.StringCases nuget package to your C# project using the followin
 ### 1. Project file definition
 
 ```xml
-<PackageReference Include="Minerals.StringCases" Version="0.2.1" />
+<PackageReference Include="Minerals.StringCases" Version="0.2.2" />
 ```
 
 ### 2. dotnet command
@@ -82,7 +82,7 @@ AMD Ryzen 5 2600, 1 CPU, 12 logical and 6 physical cores
   [Host]     : .NET 8.0.6 (8.0.624.26715), X64 RyuJIT AVX2
   Job-KUHBVV : .NET 8.0.6 (8.0.624.26715), X64 RyuJIT AVX2
 
-Runtime=.NET 8.0  
+Runtime=.NET 8.0
 ```
 
 | Method                          | Mean     | Error   | StdDev  | Gen0   | Allocated |

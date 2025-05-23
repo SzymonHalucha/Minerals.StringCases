@@ -1,3 +1,6 @@
+using System.Runtime.CompilerServices;
+using System.Globalization;
+
 namespace Minerals.StringCases
 {
     public static class StringExtensions

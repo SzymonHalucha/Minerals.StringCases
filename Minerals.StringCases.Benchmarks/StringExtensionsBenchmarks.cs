@@ -1,3 +1,5 @@
+using BenchmarkDotNet.Attributes;
+
 namespace Minerals.StringCases.Benchmarks
 {
     public class StringExtensionsBenchmarks
